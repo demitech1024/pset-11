@@ -15,7 +15,7 @@ public class Exercises {
 
   public int findMe(ArrayList<String> list, String target) {
     for (int i = 0; i < list.size(); i++) {
-      if (list.get(i) == target) {
+      if (list.get(i).equals(target)) {
         return i;
       }
     }
@@ -33,7 +33,7 @@ public class Exercises {
     int middle = 0;
     while (start <= end) {
       middle = (start + end) / 2;
-      if (list.get(middle) == target) {
+      if (list.get(middle).equals(target)) {
         return middle;
       } else if (list.get(middle) > target) {
         end = middle - 1;
@@ -49,6 +49,15 @@ public class Exercises {
     if (list.length == 0 || list == null) {
       return -1;
     }
+
+    int start =0;
+    int end = list.length - 1;
+    int middle = 0;
+    while (start <= end) {
+      middle = (start + end) / 2;
+      //if (list[middle] == target)
+    }
+
     return -1;
   }
 
