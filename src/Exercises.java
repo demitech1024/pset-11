@@ -14,10 +14,34 @@ public class Exercises {
   }
 
   public int findMe(ArrayList<String> list, String target) {
+    for (int i = 0; i < list.size(); i++) {
+      if (list.get(i) == target) {
+        return i;
+      }
+    }
+
     return -1;
   }
 
   public int findMeFaster(ArrayList<Integer> list, int target) {
+    if (list == null) {
+      return -1;
+    }
+    
+    int start = 0;
+    int end = list.size() - 1;
+    int middle = 0;
+    while (start <= end) {
+      middle = (start + end) / 2;
+      if (list.get(middle) == target) {
+        return middle;
+      } else if (list.get(middle) > target) {
+        end = middle - 1;
+      } else if (list.get(middle) < target) {
+        start = middle + 1;
+      }
+    }
+
     return -1;
   }
 
