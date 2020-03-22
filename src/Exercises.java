@@ -46,6 +46,9 @@ public class Exercises {
   }
 
   public int findMeFaster(String[] list, String target) {
+    if (list.length == 0 || list == null) {
+      return -1;
+    }
     return -1;
   }
 
