@@ -33,12 +33,12 @@ public class Exercises {
     int middle = 0;
     while (start <= end) {
       middle = (start + end) / 2;
-      if (list.get(middle).equals(target)) {
-        return middle;
-      } else if (list.get(middle) > target) {
+      if (list.get(middle) > target) {
         end = middle - 1;
       } else if (list.get(middle) < target) {
         start = middle + 1;
+      } else {
+        return middle;
       }
     }
 
@@ -55,7 +55,14 @@ public class Exercises {
     int middle = 0;
     while (start <= end) {
       middle = (start + end) / 2;
-      //if (list[middle] == target)
+      middle = ((start + end) / 2);
+      if (list[middle].compareTo(target) < 0) {
+          start = middle + 1;
+      } else if (list[middle].compareTo(target) > 0) {
+          end = middle - 1;
+      } else {
+          return middle;
+      }
     }
 
     return -1;
