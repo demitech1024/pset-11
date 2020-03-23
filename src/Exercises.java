@@ -98,7 +98,29 @@ public class Exercises {
     }
 
     public ArrayList<String> bubble(ArrayList<String> list, boolean ascending) {
-        return null;
+        if (list == null || list.length == 0) {
+            return null;
+        }
+        boolean sorted = false;
+
+        while (!sorted) {
+            sorted = true;
+            for (int i = 0; i < list.size() - 1; i++) {
+                if (list.get(i).compareTo(list.get(i+1)) > 0 && ascending == true) {
+                    String temp = list.get(i);
+                    list.set(i, list.get(i+1));
+                    list.set(i+1, temp);
+
+                    sorted = false;
+                } else if (list.get(i).compareTo(list.get(i+1)) < 0 && ascending == false) {
+                    String temp = list.get(i);
+                    list.set(i, list.get(i+1));
+                    list.set(i+1, temp);
+
+                    sorted = false;
+                }
+            }
+        }
     }
 
     public ArrayList<Integer> insertion(ArrayList<Integer> list, boolean ascending) {
