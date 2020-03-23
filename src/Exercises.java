@@ -187,11 +187,11 @@ public class Exercises {
         for (int i = 1; i < list.size(); i++) {
 
             for (int j = i; j > 0; j--) {
-                if (ascending && list.get(j-1).compareTo(list.get(j)) < 0) {
+                if (ascending && list.get(j-1).compareTo(list.get(j)) > 0) {
                     String temp = list.get(j);
                     list.set(j, list.get(j-1));
                     list.set(j-1, temp);
-                } else if (!ascending && list.get(j-1).compareTo(list.get(j)) > 0) {
+                } else if (!ascending && list.get(j-1).compareTo(list.get(j)) < 0) {
                     String temp = list.get(j);
                     list.set(j, list.get(j-1));
                     list.set(j-1, temp);
