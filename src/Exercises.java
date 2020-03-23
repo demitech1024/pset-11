@@ -128,9 +128,7 @@ public class Exercises {
     }
 
     public ArrayList<Integer> insertion(ArrayList<Integer> list, boolean ascending) {
-        if (list == null || list.size() == 0) {
-            return null;
-        }
+        if (list == null || list.size() == 0) {return null;}
         
         for (int i = 1; i < list.size(); i++) {
             int m = i;
@@ -152,9 +150,7 @@ public class Exercises {
     }
 
     public String[] insertion(String[] list, boolean ascending) {
-        if (list == null || list.length == 0) {
-            return null;
-        }
+        if (list == null || list.length == 0) {return null;}
 
         for (int i = 1;  i < list.length; i++) {
             int m = i;
@@ -176,7 +172,7 @@ public class Exercises {
     }
 
     public int[] selection(int[] list, boolean ascending) {
-        return null;
+        if (list == null || list.length == 0) {return null;}
     }
 
     public ArrayList<String> selection(ArrayList<String> list, boolean ascending) {
