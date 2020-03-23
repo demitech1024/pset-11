@@ -3,15 +3,18 @@ import java.util.ArrayList;
 public class Exercises {
 
     public int findMe(int[] list, int target) {
+        if (list == null || list.length == 0) {return -1;}
     
-    for (int i = 0; i < list.length; i++) {
-        if (list[i] == target) {return i;}
-    }
+        for (int i = 0; i < list.length; i++) {
+            if (list[i] == target) {return i;}
+        }
 
         return -1;
     }
 
     public int findMe(ArrayList<String> list, String target) {
+        if (list == null || list.size() == 0) {return -1;}
+
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).equals(target)) {return i;}
         }
@@ -20,9 +23,7 @@ public class Exercises {
     }
 
     public int findMeFaster(ArrayList<Integer> list, int target) {
-        if (list == null) {
-            return -1;
-        }
+        if (list == null || list.size() == 0) {return -1;}
     
         int start = 0;
         int end = list.size() - 1;
@@ -202,10 +203,57 @@ public class Exercises {
     }
 
     public ArrayList<Integer> merge(ArrayList<Integer> list, boolean ascending) {
-        return null;
+        if (list == null || list.size() == 0) {return null;}
+
+        if (list.size() > 1) {
+            ArrayList<Integer> list1 = new ArrayList<Integer>();
+            for (int i = 0; i < list.size() / 2; i++) {
+                list1.add(list.get(i));
+            }
+
+            ArrayList<Integer> list2 = new ArrayList<Integer>();
+            for (int i = list.size() / 2; i < list.size(); i++) {
+                list2.add(list.get(i));
+            }
+
+            
+            list1 = merge(list1, ascending);
+            list2 = merge(list2, ascending);
+
+            for (int i = 0; i < list.size(); i++) {
+                if (ascending) {
+                    if (list1.size() == 0) {
+                        list.set(i, list2.get(0));
+                        list2.remove(0);
+                    } else if (list2.size() == 0 || list1.get(0) < list2.get(0)) {
+                        list.set(i, list1.get(0));
+                        list1.remove(0);
+                    } else {
+                        list.set(i, list2.get(0));
+                        list2.remove(0);
+                    }
+                } else if (!ascending) {
+                    if (list1.size() == 0) {
+                        list.set(i, list2.get(0));
+                        list2.remove(0);
+                    } else if (list2.size() == 0 || list1.get(0) > list2.get(0)) {
+                        list.set(i, list1.get(0));
+                        list1.remove(0);
+                    } else {
+                        list.set(i, list2.get(0));
+                        list2.remove(0);
+                    }
+                }
+            }
+        }
+        
+
+        return list;
     }
 
     public String[] merge(String[] list, boolean ascending) {
-        return null;
+        if (list == null || list.length == 0) {return null;}
+
+        return list;
     }
 }
