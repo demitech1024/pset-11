@@ -254,6 +254,49 @@ public class Exercises {
     public String[] merge(String[] list, boolean ascending) {
         if (list == null || list.length == 0) {return null;}
 
+        if (list.length > 1) {
+            String[] list1 = new String[(int) list.length / 2];
+            for (int i = 0; i < list1.length; i++) {
+                list1[i] = list[i];
+            }
+
+            String[] list2 = new String[((int) list.length / 2) + list.length % 2];
+            for (int i = list2.length - 1; i < list.length; i++) {
+                list2[(int) (i - list2.length)] = list[i];
+            }
+
+            
+            list1 = merge(list1, ascending);
+            list2 = merge(list2, ascending);
+
+            for (int i = 0; i < list.length; i++) {
+                if (ascending) {
+                    if (list1.length == 0) {
+                        list[i] = list2[0];
+                        list2.remove(0);
+                    } else if (list2.length == 0 || list1[0].compareTo(list2[0]) < 0) {
+                        list[i] = list1[0];
+                        list1.remove(0);
+                    } else {
+                        list[i] = list2[0];
+                        list2.remove(0);
+                    }
+                } else if (!ascending) {
+                    if (list1.length == 0) {
+                        list[i] = list2[0];
+                        list2.remove(0);
+                    } else if (list2.length == 0 || list1[0].compareTo(list2[0]) > 0) {
+                        list[i] = list1[0];
+                        list1.remove(0);
+                    } else {
+                        list[i] = list2[0];
+                        list2.remove(0);
+                    }
+                }
+            }
+        }
+        
+
         return list;
     }
 }
