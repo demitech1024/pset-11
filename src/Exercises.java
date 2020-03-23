@@ -98,7 +98,7 @@ public class Exercises {
     }
 
     public ArrayList<String> bubble(ArrayList<String> list, boolean ascending) {
-        if (list == null || list.length == 0) {
+        if (list == null || list.size() == 0) {
             return null;
         }
         boolean sorted = false;
