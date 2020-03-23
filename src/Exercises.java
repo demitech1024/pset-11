@@ -131,20 +131,20 @@ public class Exercises {
         }
         
         for (int i = 1; i < list.size(); i++) {
-
+            int m = i;
             for (int j = i - 1; j >= 0; j--) {
-                int m = j + 1;
-                if (ascending == false && list.get(m) < list.get(j)) {
+                if (ascending == true && list.get(m) < list.get(j)) {
                     int temp = list.get(m);
                     list.set(m, list.get(j));
                     list.set(j, temp);
-                } else if (ascending == true && list.get(i) > list.get(j)) {
+                } else if (ascending == false && list.get(m) > list.get(j)) {
                     int temp = list.get(m);
                     list.set(m, list.get(j));
                     list.set(j, temp);
                 } else {
                     break;
                 }
+                m--;
             }
         }
 
