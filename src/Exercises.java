@@ -162,20 +162,19 @@ public class Exercises {
     public int[] selection(int[] list, boolean ascending) {
         if (list == null || list.length == 0) {return null;}
 
-        for (int i = 1; i < list.length; i++) {
-
-            for (int j = i; j > 0; j--) {
-                if (ascending && list[j-1] > list[j]) {
-                    int temp = list[j];
-                    list[j] = list[j-1];
-                    list[j-1] = temp;
-                } else if (!ascending && list[j-1] < list[j]) {
-                    int temp = list[j];
-                    list[j] = list[j-1];
-                    list[j-1] = temp;
+        for (int i = 0; i < list.length; i++) {
+            int minOrMax = list[i];
+            int index = i;
+            for (int j = i; j < list.length; j++) {
+                if ((ascending && minOrMax > list[j]) || (!ascending && minOrMax < list[j])) {
+                    minOrMax = list[j];
+                    index = j;
                 }
             }
 
+            int temp = list[i];
+            list[i] = list[index];
+            list[index] = temp;
         }
 
         return list;
