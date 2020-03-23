@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import org.w3c.dom.ls.LSInput;
+
 public class Exercises {
 
     public int findMe(int[] list, int target) {
@@ -141,9 +143,7 @@ public class Exercises {
                     int temp = list.get(m);
                     list.set(m, list.get(j));
                     list.set(j, temp);
-                } else {
-                    break;
-                }
+                } else {break;}
                 m--;
             }
         }
@@ -152,7 +152,27 @@ public class Exercises {
     }
 
     public String[] insertion(String[] list, boolean ascending) {
-        return null;
+        if (list == null || list.length == 0) {
+            return null;
+        }
+
+        for (int i = 1;  i < list.length; i++) {
+            int m = i;
+            for (int j = i - 1; j >= 0; j--) {
+                if (ascending == true && list[m].compareTo(list[j]) < 0) {
+                    String temp = list[m];
+                    list[m] = list[j];
+                    list[j] = temp;
+                } else if (ascending == false && list[m].compareTo(list[j]) > 0) {
+                    String temp = list[m];
+                    list[m] = list[j];
+                    list[j] = temp;
+                } else {break;}
+                m--;
+            }
+        }
+
+        return list;
     }
 
     public int[] selection(int[] list, boolean ascending) {
