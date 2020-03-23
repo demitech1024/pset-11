@@ -121,6 +121,8 @@ public class Exercises {
                 }
             }
         }
+
+        return list;
     }
 
     public ArrayList<Integer> insertion(ArrayList<Integer> list, boolean ascending) {
