@@ -1,15 +1,11 @@
 import java.util.ArrayList;
 
-import org.w3c.dom.ls.LSInput;
-
 public class Exercises {
 
     public int findMe(int[] list, int target) {
     
     for (int i = 0; i < list.length; i++) {
-        if (list[i] == target) {
-            return i;
-        }
+        if (list[i] == target) {return i;}
     }
 
         return -1;
@@ -17,9 +13,7 @@ public class Exercises {
 
     public int findMe(ArrayList<String> list, String target) {
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).equals(target)) {
-                return i;
-            }
+            if (list.get(i).equals(target)) {return i;}
         }
 
         return -1;
@@ -48,9 +42,7 @@ public class Exercises {
   }
 
     public int findMeFaster(String[] list, String target) {
-        if (list.length == 0 || list == null) {
-        return -1;
-        }
+        if (list.length == 0 || list == null) {return -1;}
 
         int start =0;
         int end = list.length - 1;
@@ -71,9 +63,7 @@ public class Exercises {
     }
 
     public int[] bubble(int[] list, boolean ascending) {
-        if (list == null || list.length == 0) {
-            return null;
-        }
+        if (list == null || list.length == 0) {return null;}
         boolean sorted = false;
 
         while (!sorted) {
@@ -100,9 +90,7 @@ public class Exercises {
     }
 
     public ArrayList<String> bubble(ArrayList<String> list, boolean ascending) {
-        if (list == null || list.size() == 0) {
-            return null;
-        }
+        if (list == null || list.size() == 0) {return null;}
         boolean sorted = false;
 
         while (!sorted) {
