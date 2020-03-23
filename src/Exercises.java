@@ -162,35 +162,20 @@ public class Exercises {
     public int[] selection(int[] list, boolean ascending) {
         if (list == null || list.length == 0) {return null;}
 
-        for (int i = 0; i < list.length - 1; i++) {
-            int minOrMax = list[i];
-            int minMaxIndex = i;
-            for (int j = i; j < list.length; j++) {
-                if (ascending) {
-                    minOrMax = (minOrMax > list[j]) ? list[j] : minOrMax;
-                    minMaxIndex = j;
-                } else if (!ascending) {
-                    minOrMax = (minOrMax < list[j]) ? list[j] : minOrMax;
-                    minMaxIndex = j;
+        for (int i = 1; i < list.length; i++) {
+
+            for (int j = i; j > 0; j--) {
+                if (ascending && list[j-1] > list[j]) {
+                    int temp = list[j];
+                    list[j] = list[j-1];
+                    list[j-1] = temp;
+                } else if (!ascending && list[j-1] < list[j]) {
+                    int temp = list[j];
+                    list[j] = list[j-1];
+                    list[j-1] = temp;
                 }
             }
 
-            int[] temp = new int[list.length];
-            temp[i] = minOrMax;
-            for (int j = 0, tempIndex = 0; j < list.length; j++, tempIndex++) {
-                if (j != i && j != minMaxIndex) {
-                    temp[tempIndex] = list[j];
-                } else if (j == minMaxIndex && j != list.length - 1) {
-                    j++;
-                    temp[tempIndex] = list[j];
-                } else if (j == i && tempIndex != list.length - 1) {
-                    tempIndex++;
-                    temp[tempIndex] = list[j];
-                }
-                
-            }
-
-            list = temp;
         }
 
         return list;
