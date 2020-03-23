@@ -252,51 +252,71 @@ public class Exercises {
     }
 
     public String[] merge(String[] list, boolean ascending) {
-        if (list == null || list.length == 0) {return null;}
+        if (list == null) {
+            return null;
+        }
 
-        if (list.length > 1) {
-            String[] list1 = new String[(int) list.length / 2];
-            for (int i = 0; i < list1.length; i++) {
-                list1[i] = list[i];
-            }
+        if (list.length == 1) {
+            return list;
+        }
 
-            String[] list2 = new String[((int) list.length / 2) + list.length % 2];
-            for (int i = list2.length - 1; i < list.length; i++) {
-                list2[(int) (i - list2.length)] = list[i];
-            }
+        String[] firstList = new String[list.length/2];
+        String[] secondList = new String[(list.length - (list.length/2))];
 
-            
-            list1 = merge(list1, ascending);
-            list2 = merge(list2, ascending);
+        for (int i = 0; i < (list.length/2); i++) {
+            firstList[i] = list[i];
+        }
+        for (int i = 0; i < secondList.length; i++) {
+            secondList[i] = list[i + (list.length/2)];
+        }
 
-            for (int i = 0; i < list.length; i++) {
-                if (ascending) {
-                    if (list1.length == 0) {
-                        list[i] = list2[0];
-                        list2.remove(0);
-                    } else if (list2.length == 0 || list1[0].compareTo(list2[0]) < 0) {
-                        list[i] = list1[0];
-                        list1.remove(0);
-                    } else {
-                        list[i] = list2[0];
-                        list2.remove(0);
-                    }
-                } else if (!ascending) {
-                    if (list1.length == 0) {
-                        list[i] = list2[0];
-                        list2.remove(0);
-                    } else if (list2.length == 0 || list1[0].compareTo(list2[0]) > 0) {
-                        list[i] = list1[0];
-                        list1.remove(0);
-                    } else {
-                        list[i] = list2[0];
-                        list2.remove(0);
-                    }
+        String[] combined = combine(merge(firstList, ascending), merge(secondList, ascending), ascending);
+        return combined;
+    }
+
+    public String[] combine(String[] firstList, String[] secondList, boolean ascending) {
+        String[] combination = new String[firstList.length + secondList.length];
+        int firstLocation = 0;
+        int secondLocation = 0;
+        int combineLocation = 0;
+      
+        while (firstLocation < firstList.length && secondLocation < secondList.length) {
+            if (ascending) {
+                if (firstList[firstLocation].compareTo(secondList[secondLocation]) < 0) {
+                    combination[combineLocation] = firstList[firstLocation];
+                    firstLocation++;
+                    combineLocation++;
+                } else {
+                    combination[combineLocation] = secondList[secondLocation];
+                    secondLocation++;
+                    combineLocation++;
+                }
+            } else {
+                if (firstList[firstLocation].compareTo(secondList[secondLocation]) > 0) {
+                    combination[combineLocation] = firstList[firstLocation];
+                    firstLocation++;
+                    combineLocation++;
+                } else {
+                    combination[combineLocation] = secondList[secondLocation];
+                    secondLocation++;
+                    combineLocation++;
                 }
             }
-        }
-        
+        }        
 
-        return list;
+        while (firstLocation == firstList.length && secondLocation != secondList.length) {
+            combination[combineLocation] = secondList[secondLocation];
+            secondLocation++;
+            combineLocation++;
+        }
+
+        while (secondLocation == secondList.length && firstLocation != firstList.length) {
+            combination[combineLocation] = firstList[firstLocation];
+            firstLocation++;
+            combineLocation++;
+        }
+
+        return combination;
     }
+
 }
